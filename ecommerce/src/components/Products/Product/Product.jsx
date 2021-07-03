@@ -1,12 +1,15 @@
 import React from 'react'
-import {Card, CardMedia, CardContest, CardActions, Typography, IconBotton} from '@material-ui/core';
-import {AddShoppingCard} from '@material-ui/icons'
-import { classes } from 'istanbul-lib-coverage';
+import {Card, CardMedia, CardContent, CardActions, Typography, IconButton} from '@material-ui/core';
+import {AddShoppingCart} from '@material-ui/icons'
 
-const Product = () => {
+import useStyles from './styles';
+
+const Product = ({ product }) => {
+    const classes = useStyles();
+
     return (
         <Card className={classes.root}>
-            <CardMedia className={classes.media} image='' title={product.name} />
+            <CardMedia className={classes.media} image={product.image} title={product.name} />
             <CardContent>
                 <div classNAme={classes.CardContent}>
                     <Typography variant="h5" gutterBottom>
@@ -14,10 +17,16 @@ const Product = () => {
                     </Typography>
 
                     <Typography variant="h5" >
-                        {product.name}
+                        {product.price}
                     </Typography>
                 </div>
+                <Typography variant="body2" color="textSecondary">{product.description}</Typography>
             </CardContent>
+            <CardActions disableSpacing className={classes.CardActions}>
+                <IconButton aria-label="Add to Cart">
+                    <AddShoppingCart />
+                </IconButton>
+            </CardActions>
         </Card>
     )
 }
